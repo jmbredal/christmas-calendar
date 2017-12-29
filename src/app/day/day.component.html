@@ -1,4 +1,10 @@
 <div class="daycontent" (click)="showImage()" [ngClass]="contentClass">
-    <span class="dayNumber">{{ dayNumber }}</span>
-    <img [src]="imageUrl" [class]="imgClass" />
+    <div class="card">
+        <div class="front">
+            <span class="dayNumber">{{ dayNumber }}</span>
+        </div>
+        <div class="back">
+            <img [src]="imageUrl" [class]="imgClass" />
+        </div>
+    </div>
 </div>
