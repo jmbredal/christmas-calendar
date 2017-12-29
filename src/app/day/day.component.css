@@ -4,12 +4,15 @@
     height: 100%;
 }
 
-.daycontent.opened .card {
+.daycontent .card {
     width: 100%;
     height: 100%;
-    transform: rotateY(180deg);
     transform-style: preserve-3d;
     transition: 0.6s;
+}
+
+.daycontent.opened .card {
+    transform: rotateY(180deg) rotateZ(5deg) scale(1.1);
 }
 
 .daycontent .front, .daycontent .back {
