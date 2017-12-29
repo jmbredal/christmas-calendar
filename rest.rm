@@ -1,0 +1,11 @@
+# Fetch all post from subreddit
+
+GET https://www.reddit.com/r/puppies/.json
+
+
+#
+GET https://i.redditmedia.com/8oR7pS0TASOWusFLjihFCsZbSIBfPVIfhGmwyHnhDzA.jpg?s=10c840297068276b032f17c788bd4cad
+
+#
+
+GET https://i.redditmedia.com/hvTFT--_5UCy9zMrCndOELtDitC2TXRaVbzYvaA-_eU.jpg?s=9136eb14ebb63405874ad689ed4a398c

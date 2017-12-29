@@ -1,0 +1,13 @@
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+
+    font-family: arial;
+}
+.day {
+    padding: .3em;
+    width: 23vw;
+    height: 50vh;
+}
