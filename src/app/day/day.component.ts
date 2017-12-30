@@ -22,6 +22,8 @@ export class DayComponent implements OnInit {
 
     showImage() {
         this.contentClass = 'opened';
-        this.imageUrl = this.dogImages.getImage(this.dayNumber);
+        this.dogImages.getImage(this.dayNumber).subscribe(url => {
+            this.imageUrl = url;
+        });
     }
 }

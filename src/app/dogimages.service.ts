@@ -1,48 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/publishReplay';
 
-interface Listing {
-    data: {
-        children: Child[];
-    };
-}
-
-interface Child {
-    data: {
-        preview: {
-            images: Image[]
-        }
-    }
-}
-
-interface Image {
-    source: {
-        url: string
-    }
-}
 
 @Injectable()
 export class DogimagesService {
 
-    images = [];
+    request: Observable<Object>;
 
     constructor(private http: HttpClient) {
-        this.getImages();
     }
 
-    getImages() {
+    getImage(index) {
         const url = 'https://www.reddit.com/r/puppies/.json';
-        this.http.get<Listing>(url).subscribe(response => {
-            console.log(response);
-            this.images = response.data.children.map(
+
+        if (!this.request) {
+            this.request = this.http.get(url).publishReplay(1).refCount();
+        }
+
+        return this.request.map(response => {
+            const children = response['data']['children'];
+            const images = children.map(
                 child => child.data.preview.images[0].source.url
             );
+            return images[index];
         });
 
     }
 
-    getImage(index) {
-        return this.images[index];
-    }
 
 }
