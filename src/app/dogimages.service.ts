@@ -1,8 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface ImagesResponse {
-    data: string[];
+interface Listing {
+    data: {
+        children: Child[];
+    };
+}
+
+interface Child {
+    data: {
+        preview: {
+            images: Image[]
+        }
+    }
+}
+
+interface Image {
+    source: {
+        url: string
+    }
 }
 
 @Injectable()
@@ -16,11 +32,10 @@ export class DogimagesService {
 
     getImages() {
         const url = 'https://www.reddit.com/r/puppies/.json';
-        this.http.get<ImagesResponse>(url).subscribe(response => {
-            response.data.children.map(
-                child => {
-                    this.images.push(child.data.preview.images[0].source.url);
-                }
+        this.http.get<Listing>(url).subscribe(response => {
+            console.log(response);
+            this.images = response.data.children.map(
+                child => child.data.preview.images[0].source.url
             );
         });
 
